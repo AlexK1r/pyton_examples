@@ -1,0 +1,24 @@
+Настройка
+
+$ python -m venv .venv
+$ .venv\scripts\activate.bat
+(.venv)$ pip install python-telegram-bot --upgrade
+
+Создайте файл config.py в папке с ботом
+добавить строчки
+
+# for startbot
+TOKIEN = '6114226803:AAGJOEL6zcxGM92zwtPgIOQ9-I4q4AuBkSE'
+
+# for openweater 
+APIKEY= 'ваш API' 				
+CITY = 'Novosibirsk,RU' 	
+CITY_ID = '1496747'		
+
+http://api.openweathermap.org/data/2.5/find?q=Novosibirsk&type=like&APPID= здесь ваш API
+
+код города можно найти здесь http://bulk.openweathermap.org/sample/
+
+
+
+
