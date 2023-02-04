@@ -1,7 +1,7 @@
 from telegram import Update
 from telegram.ext import ContextTypes
-import datetime
-import requests
+import weather, datetime
+
 
 async def hi_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(f'Привет {update.effective_user.first_name}!')
@@ -41,22 +41,7 @@ def daysNY():
     hh, mm = divmod(mm, 60)
     return ('До нового года: {} дней {} часа {} мин {} сек.'.format(d.days, hh, mm, ss))
 
-
+from pprint import pprint
 async def getweath(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    await update.message.reply_text(f'{getweather()}')
+    await update.message.reply_text(f'{weather.getweather()}')
 
-def getweather():
-    from config import APIKEY, CITY_ID
-
-    try:
-        res = requests.get("http://api.openweathermap.org/data/2.5/weather",
-                    params={'id': CITY_ID, 'units': 'metric', 'lang': 'ru', 'APPID': APIKEY})
-        
-        data = res.json()
-        # print(data)
-        weather = 'Температура: {} °С'.format(data['main']['temp']), 'Погода в вашем городе\nОблачность: {}\n'.format(data['weather'][0]['description'])
-        
-        # print(weather)
-        return (weather)
-    except Exception as e:
-        print("Exception (weather):", e)
